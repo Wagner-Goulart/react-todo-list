@@ -1,6 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Form } from "./components/Form";
 import styled from "styled-components";
+import { useTasks } from "./hooks/useTasks";
 import {
   Divider,
   List,
@@ -12,37 +13,9 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import { green, red, blueGrey, grey } from "@mui/material/colors";
 
-interface TaskItem {
-  id: number;
-  task: string;
-  checked: boolean;
-}
-
 function App() {
-  const [tasks, setTasks] = useState<TaskItem[]>([]);
-
-  const todoHandler = (task: string) => {
-    setTasks([
-      ...tasks,
-      {
-        id: tasks.length + 1,
-        task,
-        checked: false,
-      },
-    ]);
-  };
-
-  const handleCheck = (id: number) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === id ? { ...task, checked: !task.checked } : task
-      )
-    );
-  };
-
-  const handleDelete = (id: number) => {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-  };
+  
+  const { tasks, todoHandler, handleCheck, handleDelete } = useTasks()
 
   return (
     <>
