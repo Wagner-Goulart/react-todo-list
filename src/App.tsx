@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { green, red, blueGrey, grey } from "@mui/material/colors";
+import { Home } from "./pages/Home";
 
 function App() {
   
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <>
-      <StyledMain>
+      <Home>
         <StyledSection>
           <Form todoHandler={todoHandler}></Form>
           <List>
@@ -60,18 +61,10 @@ function App() {
             })}
           </List>
         </StyledSection>
-      </StyledMain>
+      </Home>
     </>
   );
 }
-
-const StyledMain = styled("main")`
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-  padding: 1rem;
-  background-color: #4257ff;
-`;
 
 const StyledSection = styled("section")`
   background-color: #fefefe;
