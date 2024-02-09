@@ -1,45 +1,17 @@
-import {
-  useState,
-  FunctionComponent,
-  FormEvent,
-  ChangeEvent,
-  KeyboardEvent,
-} from "react";
+import { FunctionComponent } from "react";
 import styled from "styled-components";
 import { TextField, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { useForm } from "../hooks/useForm";
 
 interface formProps {
   todoHandler: (task: string) => void;
 }
 
 const Form: FunctionComponent<formProps> = ({ todoHandler }) => {
-  const [text, setText] = useState<string>("");
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
-
-  const handleState = () => {
-    if (!text) {
-      return;
-    }
-
-    todoHandler(text);
-    setText("");
-  };
-
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-
-    if (e.key === "Enter") {
-      setText(e.currentTarget.value);
-      handleState();
-    }
-  };
+  
+  const { text, handleSubmit, handleChange, handleState, handleKeyPress } =
+    useForm(todoHandler);
 
   return (
     <form onSubmit={handleSubmit}>
