@@ -1,9 +1,10 @@
 import { FunctionComponent } from "react";
 import styled from "styled-components";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "../hooks/useForm";
 import { CustomTextField } from "./CustomTextField";
+import { CustomButton } from "./CustomButton";
 
 interface formProps {
   todoHandler: (task: string) => void;
@@ -22,17 +23,11 @@ const Form: FunctionComponent<formProps> = ({ todoHandler }) => {
           handleKeyPress={handleKeyPress}
           label="CRIAR UMA TAREFA..."
         />
-        <StyledButton
-          size="medium"
-          variant="contained"
-          sx={{
-            backgroundColor: "#4257FF",
-          }}
-          onClick={handleState}
-          endIcon={<AddIcon />}
-        >
-          Adicionar
-        </StyledButton>
+        <CustomButton
+          label="Adicionar"
+          handleState={handleState}
+          icon={<AddIcon />}
+        />
       </StyledDiv>
     </form>
   );
@@ -47,12 +42,6 @@ const StyledDiv = styled("div")`
 
   @media (max-width: 380px) {
     flex-direction: column;
-  }
-`;
-
-const StyledButton = styled(Button)`
-  @media (max-width: 380px) {
-    width: 90%;
   }
 `;
 
