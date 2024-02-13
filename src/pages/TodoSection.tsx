@@ -1,17 +1,11 @@
 import { FunctionComponent, Fragment } from "react";
 import { useTasks } from "../hooks/useTasks";
 import { Form } from "../components/Form";
-import {
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  Checkbox,
-  IconButton,
-} from "@mui/material";
+import { Divider, List, ListItem, ListItemText, Checkbox } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { green, red, blueGrey, grey } from "@mui/material/colors";
 import styled from "styled-components";
+import { CustomIconButton } from "../components/CustomIconButton";
 
 const TodoSection: FunctionComponent = () => {
   const { tasks, todoHandler, handleCheck, handleDelete } = useTasks();
@@ -42,14 +36,14 @@ const TodoSection: FunctionComponent = () => {
                     },
                   }}
                 />
-                <IconButton onClick={() => handleDelete(task.id)}>
+                <ListItemText primary={task.task} />
+                <CustomIconButton onclick={() => handleDelete(task.id)}>
                   <DeleteIcon
                     sx={{
                       color: red[800],
                     }}
                   />
-                </IconButton>
-                <ListItemText primary={task.task} />
+                </CustomIconButton>
               </ListItem>
               <Divider />
             </Fragment>
