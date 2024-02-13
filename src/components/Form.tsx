@@ -1,33 +1,26 @@
 import { FunctionComponent } from "react";
 import styled from "styled-components";
-import { TextField, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "../hooks/useForm";
+import { CustomTextField } from "./CustamTextField";
 
 interface formProps {
   todoHandler: (task: string) => void;
 }
 
 const Form: FunctionComponent<formProps> = ({ todoHandler }) => {
-  
   const { text, handleSubmit, handleChange, handleState, handleKeyPress } =
     useForm(todoHandler);
 
   return (
     <form onSubmit={handleSubmit}>
       <StyledDiv>
-        <TextField
-          size="small"
-          variant="standard"
-          color="secondary"
-          sx={{
-            width: "90%",
-            maxWidth: "500px",
-          }}
+        <CustomTextField
+          text={text}
+          handleChange={handleChange}
+          handleKeyPress={handleKeyPress}
           label="CRIAR UMA TAREFA..."
-          onChange={handleChange}
-          onKeyDown={handleKeyPress}
-          value={text}
         />
         <StyledButton
           size="medium"
